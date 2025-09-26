@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+#include <chrono>
+
+using namespace std;
+
+string estado[2] = {"pendiente", "pagado"};
+
+void pendiente() {
+    for (int i = 0; i < 1; i++) {
+        volatile int x = i;  
+    }
+}
+
+void pagado() {
+    for (int i = 0; i < 1; i++) {
+        volatile int x = i * 2;  
+    }
+}
+
+int main() {
+    auto start = chrono::high_resolution_clock::now();
+    pendiente();
+    auto medio = chrono::high_resolution_clock::now();
+
+    pagado();
+    auto end = chrono::high_resolution_clock::now();
+
+    chrono::duration<float, milli> duracionCarga = medio - start;
+    chrono::duration<float, milli> duracionImpresion = end - medio;
+
+    cout << "Tiempo de proceso pendiente: " << duracionCarga.count() << " ms" << endl;
+    cout << "Tiempo de proceso pagado: " << duracionImpresion.count() << " ms" << endl;
+
+    return 0;
+}
