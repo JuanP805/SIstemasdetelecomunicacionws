@@ -1,0 +1,37 @@
+#include <chrono>
+#include <iostream>
+using namespace std;
+
+double preciominllamada[5];
+
+void cargarplan() {
+    preciominllamada[0] = 0.2;
+    preciominllamada[1] = 0.5;
+    preciominllamada[2] = 0.7;
+    preciominllamada[3] = 1.0;  
+    preciominllamada[4] = 1.2;
+}
+
+void imprimirplan() {
+    for (int idPlan = 0; idPlan < 5; idPlan++) {
+        cout << "plan " << idPlan << ": " << preciominllamada[idPlan] << endl;
+    }
+}
+
+int main() {
+
+    auto start = chrono::high_resolution_clock::now();
+    cargarplan();
+    auto medio = chrono::high_resolution_clock::now();
+
+    imprimirplan();
+    auto end = chrono::high_resolution_clock::now();
+
+    chrono::duration<float, milli> duracionCarga = medio - start;
+    chrono::duration<float, milli> duracionImpresion = end - medio;
+
+    cout << "Tiempo de carga: " << duracionCarga.count() << " ms" << endl;
+    cout << "Tiempo de impresión: " << duracionImpresion.count() << " ms" << endl;
+
+    return 0;
+}
