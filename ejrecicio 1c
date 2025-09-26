@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+#include <chrono>
+
+using namespace std;
+
+string nombres[195] = {
+    "Finlandia", "Nepal", "Pakistán", "Haití", "Perú", "Emiratos Árabes Unidos", "Letonia", "Nigeria", "Portugal", "Vietnam",
+    "Vaticano", "Georgia", "Lituania", "Qatar", "Marruecos", "Kirguistán", "Albania", "Samoa", "Alemania", "Eslovaquia",
+    "Islandia", "Eslovenia", "Ecuador", "Croacia", "Azerbaiyán", "Kenia", "Corea del Sur", "Serbia", "Siria", "Camerún",
+    "Singapur", "India", "Tailandia", "Sudán", "Rumanía", "Polonia", "Francia", "Arabia Saudita", "Argelia", "Cuba",
+    "Moldavia", "Tayikistán", "Liberia", "Zambia", "Turquía", "Brunéi", "Indonesia", "República Centroafricana", "Laos", "Canadá",
+    "Israel", "Malasia", "Namibia", "Macedonia del Norte", "Yemen", "Bangladés", "Andorra", "Chile", "El Salvador", "Suiza",
+    "Palestina", "Luxemburgo", "Túnez", "Guatemala", "Bolivia", "Grecia", "Lesoto", "Mongolia", "Jordania", "Corea del Norte",
+    "Maldivas", "Sri Lanka", "Estados Unidos", "Noruega", "Bosnia y Herzegovina", "Irlanda", "Myanmar", "Angola", "Uganda", "Australia",
+    "Ucrania", "México", "Bielorrusia", "Dinamarca", "Togo", "Malaui", "Bélgica", "Armenia", "Venezuela", "Colombia",
+    "Honduras", "Níger", "Baréin", "Guinea", "Cabo Verde", "Kazajistán", "Gambia", "Benín", "Somalia", "China",
+    "Antigua y Barbuda", "Omán", "República Dominicana", "Costa de Marfil", "Etiopía", "Dominica", "Panamá", "Granada", "Ruanda", "Trinidad y Tobago",
+    "Uzbekistán", "Mozambique", "Botsuana", "Malí", "Kuwait", "Líbano", "Mauricio", "Ghana", "Gabón", "Seychelles",
+    "Bahamas", "Montenegro", "Santa Lucía", "Paraguay", "Esuatini", "Estonia", "Sudáfrica", "Argentina", "Japón", "República Checa",
+    "República del Congo", "San Vicente y las Granadinas", "Hungría", "Rusia", "Libia", "Sudán del Sur", "República Democrática del Congo", "San Cristóbal y Nieves", "Timor Oriental", "Tonga",
+    "Nicaragua", "Papúa Nueva Guinea", "Chad", "Barbados", "Micronesia", "Mauritania", "Burundi", "Irak", "Guinea-Bisáu", "Tanzania",
+    "San Marino", "Liechtenstein", "Tuvalu", "Filipinas", "Suazilandia", "Belice", "Comoras", "Eritrea", "Kosovo", "Yibuti",
+    "Guyana", "Bután", "Vanuatu", "Fiyi", "Santo Tomé y Príncipe", "Mónaco", "Malta", "Nauru", "Surinam", "Marshall",
+    "Kiribati", "Palau", "Nueva Zelanda", "Catar", "Sierra Leona", "Zimbabue", "Burkina Faso"
+};
+
+void rellenar_NombreCliente() {
+    for (int i = 0; i < 195; i++) {
+        volatile auto x = nombres[i];
+    }
+}
+
+void imprimir_NombreCliente() {
+    for (int i = 0; i < 195; i++) {
+        cout << nombres[i] << endl;
+    }
+}
+
+int main() {
+    cout << "Ejercicio 1 inciso c" << endl;
+
+    auto inicio = chrono::high_resolution_clock::now();
+    rellenar_NombreCliente();
+    auto medio = chrono::high_resolution_clock::now();
+
+    imprimir_NombreCliente();
+    auto fin = chrono::high_resolution_clock::now();
+
+    auto duracion1 = chrono::duration_cast<chrono::microseconds>(medio - inicio);
+    auto duracion2 = chrono::duration_cast<chrono::microseconds>(fin - medio);
+
+    cout << "Tiempo de Generacion de Nombres: " << duracion1.count() << " microsegundos" << endl;
+    cout << "Tiempo de Impresion de Nombres: " << duracion2.count() << " microsegundos" << endl;
+
+    return 0;
+}
