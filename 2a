@@ -1,0 +1,28 @@
+
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int detallecliente[10000][3];
+void llenarllecliente(){
+      
+    
+    for (int i = 0; i < 10000; i++ ){
+      
+        detallecliente [i][0] = rand()%2; // randon de 0 a 1   => 0 = femenino, 1 = masculino
+        detallecliente[i][1] = rand()%83 + 1943;
+        detallecliente [i][2] = rand()%195;
+    }
+}
+void  mostrardetalle(){
+    for (int i = 0; i<10000; i++){
+        cout<<i<<"." <<detallecliente[i][0]<<"/ "<<detallecliente[i][1]<<"/"<<detallecliente[i][2]<<endl;
+        
+}
+}
+    int main() {
+      llenarllecliente();
+      mostrardetalle();
+    
+     return 0;
+}
